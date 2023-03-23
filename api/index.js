@@ -3,6 +3,8 @@ const cors = require("cors");
 require('dotenv').config();
 const { default: mongoose } = require("mongoose");
 const User = require('./models/User')
+const bcypt = require('bcryptjs')
+const salt = bcypt.genSaltSync(10);
 
 const app = express();
 app.use(cors({
@@ -17,15 +19,18 @@ app.get('/test', (req, res) => {
 
 mongoose.connect(process.env.MONGO_URI);
 
-app.post('/register', (req, res) => {
+app.post('/register', async (req, res) => {
     const { name, email, password } = req.body;
-    console.log({ name, email, password })
-    User.create({
-        name,
-        email,
-        password
-    })
-    res.json({ name, email, password });
+    try {
+        const user = await User.create({
+            name,
+            email,
+            password: bcypt.hashSync(password, salt)
+        });
+        res.json(user);
+    } catch (error) {
+        res.status(422).json(error)
+    }
 })
 
 app.listen(4000)
