@@ -11,6 +11,8 @@ Booking - Mern
     Under client directory
     - npm install
     - yarn dev
+    - yarn add axios
+    - yarn add mongoose
 ```
 
 [Install tailwindcss](https://tailwindcss.com/docs/guides/create-react-app) \
