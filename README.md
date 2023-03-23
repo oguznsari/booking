@@ -13,4 +13,5 @@ Booking - Mern
     - yarn dev
 ```
 
-[Install tailwindcss](https://tailwindcss.com/docs/guides/create-react-app)
+[Install tailwindcss](https://tailwindcss.com/docs/guides/create-react-app) \
+[Icons](https://heroicons.com/)
