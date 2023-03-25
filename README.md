@@ -19,6 +19,7 @@ Booking - Mern
     - yarn add bcryptjs
     - yarn add jsonwebtoken
     - yarn add image-downloader
+    - yarn add multer (for upload)
 ```
 
 [Install tailwindcss](https://tailwindcss.com/docs/guides/create-react-app) \
