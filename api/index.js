@@ -8,6 +8,7 @@ const salt = bcrypt.genSaltSync(10);
 const jwt = require('jsonwebtoken');
 const { request } = require("express");
 const cookieParser = require("cookie-parser");
+const imageDownloader = require("image-downloader");
 
 const app = express();
 app.use(cors({
@@ -16,6 +17,8 @@ app.use(cors({
 }));
 app.use(express.json());                                        // json parser
 app.use(cookieParser());                                        // cookie parser
+
+app.use('/uploads', express.static(__dirname + '/uploads'))
 
 app.get('/test', (req, res) => {
     res.json('test ok.')
@@ -72,6 +75,16 @@ app.get('/profile', (req, res) => {
 
 app.post('/logout', (req, res) => {
     res.cookie('token', '').json(true)
+})
+
+app.post('/upload-by-link', async (req, res) => {
+    const { link } = req.body;
+    const newName = 'photo' + Date.now() + '.jpg'
+    await imageDownloader.image({
+        url: link,
+        dest: __dirname + '/uploads/' + newName,
+    });
+    res.json(newName)
 })
 
 app.listen(4000)
