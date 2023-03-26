@@ -1,8 +1,13 @@
-import { useState } from "react";
-import { Navigate } from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Navigate, useParams } from "react-router-dom";
 import AccountNavigation from "../AccountNav";
+import PhotosUploader from "../PhotosUploader";
+import Perks from "../Perks";
+
 
 export default function PlacesFormPage() {
+    const { id } = useParams();
 
     const [title, setTitle] = useState('');
     const [address, setAddress] = useState('');
@@ -17,6 +22,24 @@ export default function PlacesFormPage() {
 
     const [redirect, setRedirect] = useState(false);
 
+    useEffect(() => {
+        if (!id) {
+            return;
+        }
+        axios.get('/places/' + id)
+            .then(response => {
+                const { data } = response;
+                setTitle(data.title)
+                setAddress(data.address)
+                setAddedPhotos(data.photos)
+                setDescription(data.description)
+                setPerks(data.perks)
+                setExtraInfo(data.extraInfo)
+                setCheckIn(data.checkIn)
+                setCheckOut(data.checkOut)
+                setMaxGuests(data.maxGuests)
+            });
+    }, [id])
     function inputHeader(text) {
         return (
             <h2 className="text-2xl mt-4">{text}</h2>
