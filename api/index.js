@@ -30,6 +30,15 @@ app.get('/test', (req, res) => {
 
 mongoose.connect(process.env.MONGO_URI);
 
+function getUserDataFromToken(token) {
+    return new Promise((resolve, reject) => {
+        jwt.verify(token, process.env.JWT_SECRET, {}, async (err, userData) => {
+            if (err) throw err;
+            resolve(userData);
+        });
+    })
+}
+
 app.post('/register', async (req, res) => {
     const { name, email, password } = req.body;
     try {
@@ -163,17 +172,27 @@ app.get('/places', async (req, res) => {
     res.json(await Place.find())
 });
 
-app.post('/bookings', (req, res) => {
+app.post('/bookings', async (req, res) => {
+    const userData = await getUserDataFromToken(req.cookies.token)
     const {
-        place, checkIn, checkOut, numberOfGuests, name, phone, price
+        place, checkIn, checkOut, numberOfGuests, name, phone, price,
     } = req.body;
     Booking.create({
-        place, checkIn, checkOut, numberOfGuests, name, phone, price
+        place, checkIn, checkOut, numberOfGuests, name, phone, price,
+        user: userData.id
     }).then((doc) => {
         res.json(doc);
     }).catch((err) => {
         throw err;
     })
+})
+
+
+
+app.get('/bookings', async (req, res) => {
+    const { token } = req.cookies;
+    const userData = await getUserDataFromToken(token);
+    res.json(await Booking.find({ user: userData.id }).populate('place'))           // important usage populate
 })
 
 app.listen(4000)
