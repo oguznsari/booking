@@ -12,6 +12,7 @@ Booking - Mern
     - npm install
     - yarn dev
     - yarn add axios
+    - yarn add date-fns (date functions)
 
     Under api directory
     - yarn add mongoose

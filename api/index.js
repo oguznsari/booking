@@ -4,6 +4,7 @@ require('dotenv').config();
 const { default: mongoose } = require("mongoose");
 const User = require('./models/User')
 const Place = require('./models/Place')
+const Booking = require('./models/Booking')
 const bcrypt = require('bcryptjs');
 const salt = bcrypt.genSaltSync(10);
 const jwt = require('jsonwebtoken');
@@ -160,6 +161,19 @@ app.put('/places', async (req, res) => {
 
 app.get('/places', async (req, res) => {
     res.json(await Place.find())
+});
+
+app.post('/bookings', (req, res) => {
+    const {
+        place, checkIn, checkOut, numberOfGuests, name, phone, price
+    } = req.body;
+    Booking.create({
+        place, checkIn, checkOut, numberOfGuests, name, phone, price
+    }).then((doc) => {
+        res.json(doc);
+    }).catch((err) => {
+        throw err;
+    })
 })
 
 app.listen(4000)
