@@ -32,3 +32,4 @@ Booking - Mern
     yarn install express
 ```
 
+### [Watch the end product test video](https://youtu.be/IxO2oyiLdYg)
