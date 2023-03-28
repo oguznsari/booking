@@ -33,3 +33,7 @@ Booking - Mern
 ```
 
 ### [Watch the end product test video](https://youtu.be/IxO2oyiLdYg)
+
+
+### To do:
+1. add api documentation
