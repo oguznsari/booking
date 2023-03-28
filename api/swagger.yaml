@@ -1,0 +1,533 @@
+openapi: 3.0.0
+info:
+  title: Booking Api
+  contact: {}
+  version: '1.0'
+servers:
+- url: http://localhost:4000/
+  variables: {}
+paths:
+  /places:
+    get:
+      tags:
+      - Places
+      summary: Get all places
+      operationId: Getallplaces
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+    put:
+      tags:
+      - Places
+      summary: Update a place ( _id -> id )
+      operationId: Updateaplace(_id->id)
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/Updateaplace_id-idRequest'
+              - example:
+                  id: 6420a0ecc09bab267604eba7
+                  owner: 641c9bf91aeb71739a1d9906
+                  title: Entire villa hosted by IOO Doors
+                  address: Paros, Greece
+                  description: This modern suite adheres to the local architecture while incorporating modern lines, curves and stone. Boho aesthetics dominate the interior while on the outside, a sprawling private balcony with a mini pool and a shaded dining area invite you to an unforgettable summer experience!
+                  perks:
+                  - wifi
+                  - parking
+                  - tv
+                  extraInfo: >-
+                    Check-In Guarantee
+
+                    If you can’t check into your home and the Host cannot resolve the issue, we’ll find you a similar or better home for the length of your original stay, or we’ll refund you.
+                  checkIn: 11
+                  checkOut: 11
+                  maxGuests: 3
+                  price: 111
+                  __v: 1
+                  addedPhotos:
+                  - photo1680007533730.jpg
+                  - photo1680007480472.jpg
+                  - photo1680007488490.jpg
+                  - photo1680007496349.jpg
+                  - photo1680007505921.jpg
+                  - photo1680007511993.jpg
+                  - photo1680009737776.jpg
+            example:
+              id: 6420a0ecc09bab267604eba7
+              owner: 641c9bf91aeb71739a1d9906
+              title: Entire villa hosted by IOO Doors
+              address: Paros, Greece
+              description: This modern suite adheres to the local architecture while incorporating modern lines, curves and stone. Boho aesthetics dominate the interior while on the outside, a sprawling private balcony with a mini pool and a shaded dining area invite you to an unforgettable summer experience!
+              perks:
+              - wifi
+              - parking
+              - tv
+              extraInfo: >-
+                Check-In Guarantee
+
+                If you can’t check into your home and the Host cannot resolve the issue, we’ll find you a similar or better home for the length of your original stay, or we’ll refund you.
+              checkIn: 11
+              checkOut: 11
+              maxGuests: 3
+              price: 111
+              __v: 1
+              addedPhotos:
+              - photo1680007533730.jpg
+              - photo1680007480472.jpg
+              - photo1680007488490.jpg
+              - photo1680007496349.jpg
+              - photo1680007505921.jpg
+              - photo1680007511993.jpg
+              - photo1680009737776.jpg
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+      - Places
+      summary: create a place ( without added photos )
+      operationId: createaplace(withoutaddedphotos)
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/createaplacewithoutaddedphotosrequest'
+              - example:
+                  title: Uniquely designed organic nature house, off-grid
+                  address: Brålanda, Västra Götalands län, Sweden
+                  addedPhotos: []
+                  description: Welcome to the house of the future, off-grid with own energy and food production. One of the world's most environmentally friendly and sustainable houses. Here you can enjoy a greenhouse garden with Mediterranean plants. On a mountain hike with miles of views of Lake Vänern is the house with proximity to the beach, boat harbor and beautiful nature in the corner.
+                  perks:
+                  - wifi
+                  - parking
+                  - tv
+                  extraInfo: Entrance level - Greenhouse, bathroom with shower, kitchen, bedroom, living room, dining area, patio. Upper floor - Bedroom, toilet, bedroom with desk, balcony
+                  checkIn: 14
+                  checkOut: 12
+                  maxGuests: 4
+                  price: 351
+            example:
+              title: Uniquely designed organic nature house, off-grid
+              address: Brålanda, Västra Götalands län, Sweden
+              addedPhotos: []
+              description: Welcome to the house of the future, off-grid with own energy and food production. One of the world's most environmentally friendly and sustainable houses. Here you can enjoy a greenhouse garden with Mediterranean plants. On a mountain hike with miles of views of Lake Vänern is the house with proximity to the beach, boat harbor and beautiful nature in the corner.
+              perks:
+              - wifi
+              - parking
+              - tv
+              extraInfo: Entrance level - Greenhouse, bathroom with shower, kitchen, bedroom, living room, dining area, patio. Upper floor - Bedroom, toilet, bedroom with desk, balcony
+              checkIn: 14
+              checkOut: 12
+              maxGuests: 4
+              price: 351
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /places/641f16b07671fc13e489e55d:
+    get:
+      tags:
+      - Places
+      summary: Get single place
+      operationId: Getsingleplace
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /login:
+    post:
+      tags:
+      - user
+      summary: userLogin
+      operationId: userLogin
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/userLoginRequest'
+              - example:
+                  email: john@doe.com
+                  password: johndoe
+            example:
+              email: john@doe.com
+              password: johndoe
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /register:
+    post:
+      tags:
+      - user
+      summary: userRegister
+      operationId: userRegister
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/userRegisterRequest'
+              - example:
+                  name: doğu
+                  email: dogu@sari.com
+                  password: dogusari
+            example:
+              name: doğu
+              email: dogu@sari.com
+              password: dogusari
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /profile:
+    get:
+      tags:
+      - user
+      summary: getUserProfile ( token )
+      operationId: getUserProfile(token)
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /logout:
+    post:
+      tags:
+      - user
+      summary: userLogout
+      operationId: userLogout
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /bookings:
+    get:
+      tags:
+      - bookings
+      summary: getUserBookings
+      operationId: getUserBookings
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+      - bookings
+      summary: CreateBooking (user-token)
+      operationId: CreateBooking(user-token)
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateBookinguser-tokenRequest'
+              - example:
+                  place: 6420a0ecc09bab267604eba7
+                  checkIn: 1679875200000
+                  checkOut: 1680220800000
+                  name: John doe
+                  phone: '5395013518'
+                  price: 480
+            example:
+              place: 6420a0ecc09bab267604eba7
+              checkIn: 1679875200000
+              checkOut: 1680220800000
+              name: John doe
+              phone: '5395013518'
+              price: 480
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /upload-by-link:
+    post:
+      tags:
+      - image
+      summary: upload image by link
+      operationId: uploadimagebylink
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/uploadimagebylinkrequest'
+              - example:
+                  link: https://a0.muscache.com/im/pictures/miso/Hosting-35538426/original/3c861fe4-88f8-428e-910c-9141c10e7971.jpeg?im_w=1200
+            example:
+              link: https://a0.muscache.com/im/pictures/miso/Hosting-35538426/original/3c861fe4-88f8-428e-910c-9141c10e7971.jpeg?im_w=1200
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    Updateaplace_id-idRequest:
+      title: Updateaplace_id-idRequest
+      required:
+      - id
+      - owner
+      - title
+      - address
+      - description
+      - perks
+      - extraInfo
+      - checkIn
+      - checkOut
+      - maxGuests
+      - price
+      - __v
+      - addedPhotos
+      type: object
+      properties:
+        id:
+          type: string
+        owner:
+          type: string
+        title:
+          type: string
+        address:
+          type: string
+        description:
+          type: string
+        perks:
+          type: array
+          items:
+            type: string
+          description: ''
+        extraInfo:
+          type: string
+        checkIn:
+          type: integer
+          format: int32
+        checkOut:
+          type: integer
+          format: int32
+        maxGuests:
+          type: integer
+          format: int32
+        price:
+          type: integer
+          format: int32
+        __v:
+          type: integer
+          format: int32
+        addedPhotos:
+          type: array
+          items:
+            type: string
+          description: ''
+      example:
+        id: 6420a0ecc09bab267604eba7
+        owner: 641c9bf91aeb71739a1d9906
+        title: Entire villa hosted by IOO Doors
+        address: Paros, Greece
+        description: This modern suite adheres to the local architecture while incorporating modern lines, curves and stone. Boho aesthetics dominate the interior while on the outside, a sprawling private balcony with a mini pool and a shaded dining area invite you to an unforgettable summer experience!
+        perks:
+        - wifi
+        - parking
+        - tv
+        extraInfo: >-
+          Check-In Guarantee
+
+          If you can’t check into your home and the Host cannot resolve the issue, we’ll find you a similar or better home for the length of your original stay, or we’ll refund you.
+        checkIn: 11
+        checkOut: 11
+        maxGuests: 3
+        price: 111
+        __v: 1
+        addedPhotos:
+        - photo1680007533730.jpg
+        - photo1680007480472.jpg
+        - photo1680007488490.jpg
+        - photo1680007496349.jpg
+        - photo1680007505921.jpg
+        - photo1680007511993.jpg
+        - photo1680009737776.jpg
+    createaplacewithoutaddedphotosrequest:
+      title: createaplacewithoutaddedphotosrequest
+      required:
+      - title
+      - address
+      - addedPhotos
+      - description
+      - perks
+      - extraInfo
+      - checkIn
+      - checkOut
+      - maxGuests
+      - price
+      type: object
+      properties:
+        title:
+          type: string
+        address:
+          type: string
+        addedPhotos:
+          type: array
+          items:
+            type: string
+          description: ''
+        description:
+          type: string
+        perks:
+          type: array
+          items:
+            type: string
+          description: ''
+        extraInfo:
+          type: string
+        checkIn:
+          type: integer
+          format: int32
+        checkOut:
+          type: integer
+          format: int32
+        maxGuests:
+          type: integer
+          format: int32
+        price:
+          type: integer
+          format: int32
+      example:
+        title: Uniquely designed organic nature house, off-grid
+        address: Brålanda, Västra Götalands län, Sweden
+        addedPhotos: []
+        description: Welcome to the house of the future, off-grid with own energy and food production. One of the world's most environmentally friendly and sustainable houses. Here you can enjoy a greenhouse garden with Mediterranean plants. On a mountain hike with miles of views of Lake Vänern is the house with proximity to the beach, boat harbor and beautiful nature in the corner.
+        perks:
+        - wifi
+        - parking
+        - tv
+        extraInfo: Entrance level - Greenhouse, bathroom with shower, kitchen, bedroom, living room, dining area, patio. Upper floor - Bedroom, toilet, bedroom with desk, balcony
+        checkIn: 14
+        checkOut: 12
+        maxGuests: 4
+        price: 351
+    userLoginRequest:
+      title: userLoginRequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: john@doe.com
+        password: johndoe
+    userRegisterRequest:
+      title: userRegisterRequest
+      required:
+      - name
+      - email
+      - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        name: doğu
+        email: dogu@sari.com
+        password: dogusari
+    CreateBookinguser-tokenRequest:
+      title: CreateBookinguser-tokenRequest
+      required:
+      - place
+      - checkIn
+      - checkOut
+      - name
+      - phone
+      - price
+      type: object
+      properties:
+        place:
+          type: string
+        checkIn:
+          type: integer
+          format: int64
+        checkOut:
+          type: integer
+          format: int64
+        name:
+          type: string
+        phone:
+          type: string
+        price:
+          type: integer
+          format: int32
+      example:
+        place: 6420a0ecc09bab267604eba7
+        checkIn: 1679875200000
+        checkOut: 1680220800000
+        name: John doe
+        phone: '5395013518'
+        price: 480
+    uploadimagebylinkrequest:
+      title: uploadimagebylinkrequest
+      required:
+      - link
+      type: object
+      properties:
+        link:
+          type: string
+      example:
+        link: https://a0.muscache.com/im/pictures/miso/Hosting-35538426/original/3c861fe4-88f8-428e-910c-9141c10e7971.jpeg?im_w=1200
+  securitySchemes:
+    httpBearer:
+      type: http
+      scheme: bearer
+security:
+- httpBearer: []
+tags:
+- name: Places
+- name: user
+- name: bookings
+- name: image
