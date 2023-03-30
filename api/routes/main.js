@@ -8,9 +8,14 @@ const { getAllBookings, createBooking } = require('../controllers/bookings')
 const { registerUser, loginUser, logoutUser, getUserProfile } = require('../controllers/auth')
 const { uploadWithLink, uploadImageFile } = require('../controllers/image');
 
-router.post('/places', savePlace).put('/places', updatePlace).get('/places', getAllPlaces).get('/places/:id', getPlaceWithId).get('/user-places', getUserPlaces)
-router.post('/bookings', createBooking).get('/bookings', getAllBookings)
-router.post('/register', registerUser).post('/login', loginUser).post('/logout', logoutUser).get('/profile', getUserProfile)
+router.route('/places').post(savePlace).put(updatePlace).get(getAllPlaces)
+router.route('/places/:id').get(getPlaceWithId)
+router.route('/user-places').get(getUserPlaces)
+router.route('/bookings').post(createBooking).get(getAllBookings)
+router.route('/register').post(registerUser)
+router.route('/login').post(loginUser)
+router.route('/logout').post(logoutUser)
+router.route('profile').get(getUserProfile)
 
 const photosMiddleware = multer({ dest: 'uploads' })
 router.post('/upload', photosMiddleware.array('photos', 100), uploadImageFile).post('/upload-by-link', uploadWithLink)
